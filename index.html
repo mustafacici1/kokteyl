@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocktailMaster - Dünya Kokteyilleri</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="cocktail-glass">
+            <div class="liquid"></div>
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+            <div class="bubble bubble3"></div>
+        </div>
+        <h2>Kokteyller Hazırlanıyor...</h2>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-cocktail"></i>
+                <span>CocktailMaster</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Ana Sayfa</a>
+                <a href="#cocktails" class="nav-link">Kokteyller</a>
+                <a href="#coffee" class="nav-link">Kahveler</a>
+                <a href="#favorites" class="nav-link">Favoriler</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-element element1"><i class="fas fa-cocktail"></i></div>
+            <div class="floating-element element2"><i class="fas fa-wine-glass"></i></div>
+            <div class="floating-element element3"><i class="fas fa-coffee"></i></div>
+            <div class="floating-element element4"><i class="fas fa-glass-martini"></i></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Dünyanın En İyi</span>
+                <span class="title-line gradient-text">Kokteyl Tarifleri</span>
+            </h1>
+            <p class="hero-description">Alkollü, alkolsüz kokteyller ve kahve çeşitleri için tek adres</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('cocktails')">
+                    <i class="fas fa-search"></i>
+                    Kokteyilleri Keşfet
+                </button>
+                <button class="btn btn-secondary" onclick="getRandomCocktail()">
+                    <i class="fas fa-random"></i>
+                    Rastgele Kokteyl
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <div class="search-input-group">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Kokteyl veya kahve ara..." class="search-input">
+                    <button class="search-btn" onclick="searchDrinks()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-type="all">Tümü</button>
+                    <button class="filter-tab" data-type="alcoholic">Alkollü</button>
+                    <button class="filter-tab" data-type="non-alcoholic">Alkolsüz</button>
+                    <button class="filter-tab" data-type="coffee">Kahve</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cocktails Section -->
+    <section id="cocktails" class="cocktails-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popüler Kokteyller</h2>
+                <p class="section-subtitle">En sevilen kokteyl tariflerini keşfedin</p>
+            </div>
+            <div id="cocktailsGrid" class="drinks-grid">
+                <!-- Kokteyller buraya dinamik olarak eklenecek -->
+            </div>
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-outline">
+                    <i class="fas fa-plus"></i>
+                    Daha Fazla Yükle
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Section -->
+    <section id="coffee" class="coffee-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Kahve Çeşitleri</h2>
+                <p class="section-subtitle">Dünya kahve kültürünü keşfedin</p>
+            </div>
+            <div id="coffeeGrid" class="drinks-grid">
+                <!-- Kahveler buraya dinamik olarak eklenecek -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Favorites Section -->
+    <section id="favorites" class="favorites-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Favorilerim</h2>
+                <p class="section-subtitle">Beğendiğiniz tarifler</p>
+            </div>
+            <div id="favoritesGrid" class="drinks-grid">
+                <div class="empty-favorites">
+                    <i class="fas fa-heart"></i>
+                    <h3>Henüz favori eklemediniz</h3>
+                    <p>Beğendiğiniz kokteyilleri kalp simgesine tıklayarak favorilere ekleyin</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="drinkModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Modal içeriği buraya gelecek -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-cocktail"></i>
+                    <span>CocktailMaster</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Ana Sayfa</a>
+                    <a href="#cocktails">Kokteyller</a>
+                    <a href="#coffee">Kahveler</a>
+                    <a href="#favorites">Favoriler</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CocktailMaster. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
